@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EF9690"
-    tools:context=".presentation.fragments.NewNoteFragment">
+    tools:context=".presentation.ui.fragments.NewNoteFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_et_task"

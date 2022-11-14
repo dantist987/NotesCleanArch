@@ -1,4 +1,4 @@
-package com.example.notescleanarch.presentation
+package com.example.notescleanarch.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import com.example.notescleanarch.domain.model.Note
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NotesAdapter (
+class NotesAdapter(
     private val onClick: (Note) -> Unit,
     private val onLongClick: (Note) -> Unit
 ) : RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
@@ -20,11 +20,6 @@ class NotesAdapter (
         notifyItemInserted(notes.lastIndex)
     }
 
-    fun setSearchResult(newNoteModel: Note){
-        notes.clear()
-        notes.add(newNoteModel)
-        notifyDataSetChanged()
-    }
 
     fun editTask(new: Note) {
         val index = notes.indexOfFirst { it.createdTime == new.createdTime }

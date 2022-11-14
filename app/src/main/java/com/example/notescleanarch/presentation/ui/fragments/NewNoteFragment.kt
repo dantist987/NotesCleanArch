@@ -1,4 +1,4 @@
-package com.example.notescleanarch.presentation.fragments
+package com.example.notescleanarch.presentation.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.notescleanarch.R
 
-
-class NotesFragment : Fragment() {
+class NewNoteFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notes, container, false)
+        return inflater.inflate(R.layout.fragment_new_note, container, false)
     }
 }
