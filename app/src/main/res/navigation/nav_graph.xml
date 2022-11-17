@@ -7,12 +7,16 @@
 
     <fragment
         android:id="@+id/notesFragment"
-        android:name="com.example.notescleanarch.presentation.ui.fragments.NotesFragment"
+        android:name="com.example.notescleanarch.presentation.ui.fragments.notesList.NotesFragment"
         android:label="fragment_notes"
-        tools:layout="@layout/fragment_notes" />
+        tools:layout="@layout/fragment_notes" >
+        <action
+            android:id="@+id/action_notesFragment_to_newNoteFragment"
+            app:destination="@id/newNoteFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newNoteFragment"
-        android:name="com.example.notescleanarch.presentation.ui.fragments.NewNoteFragment"
+        android:name="com.example.notescleanarch.presentation.ui.fragments.newNote.NewNoteFragment"
         android:label="fragment_new_note"
         tools:layout="@layout/fragment_new_note" />
 </navigation>

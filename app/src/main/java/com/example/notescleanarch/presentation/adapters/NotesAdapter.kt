@@ -9,19 +9,19 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class NotesAdapter(
-    private val onClick: (Note) -> Unit,
+   // private val onItemClick: (Note) -> Unit,
     private val onLongClick: (Note) -> Unit
 ) : RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
 
     private val notes = mutableListOf<Note>()
 
-    fun addTask(new: Note) {
+    fun addNote(new: Note) {
         notes.add(0, new)
         notifyItemInserted(notes.lastIndex)
     }
 
 
-    fun editTask(new: Note) {
+    fun editNote(new: Note) {
         val index = notes.indexOfFirst { it.createdTime == new.createdTime }
         notes[index] = new
         notifyItemChanged(index)
@@ -33,6 +33,14 @@ class NotesAdapter(
             notes.addAll(it)
         }
         notifyDataSetChanged()
+    }
+
+    fun deleteNote(note: Note) {
+        val index = notes.indexOfFirst {
+            note == note
+        }
+        notes.removeAt(index)
+        notifyItemRemoved(index)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
@@ -48,14 +56,6 @@ class NotesAdapter(
         return notes.size
     }
 
-    fun removeTask(note: Note) {
-        val index = notes.indexOfFirst {
-            note == note
-        }
-        notes.removeAt(index)
-        notifyItemRemoved(index)
-    }
-
     fun convertDate(millis: String, dateFormat: String): String {
         val simpleDateFormat = SimpleDateFormat(dateFormat)
         return simpleDateFormat.format(Date(millis)).toString()
@@ -64,16 +64,16 @@ class NotesAdapter(
     inner class NotesViewHolder(val binding: ItemNoteBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(model: Note) {
+        fun onBind(note: Note) {
 
-            binding.tvTask.text = model.title
-            binding.tvDate.text = convertDate(model.createdTime, "dd-MMMM-yyyy hh:mm")
+            binding.tvNote.text = note.title
+            binding.tvDate.text = convertDate(note.createdTime.toString(), "dd-MMMM-yyyy hh:mm")
 
-            itemView.setOnClickListener {
-                onClick(model)
-            }
+           // itemView.setOnClickListener {
+            //    onItemClick.invoke(note)
+           // }
             itemView.setOnLongClickListener {
-                onLongClick(model)
+                onLongClick.invoke(note)
                 return@setOnLongClickListener true
             }
         }

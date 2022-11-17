@@ -8,6 +8,6 @@ class GetAllNotesUseCase @Inject constructor(
     private val repository: NoteRepository
 ) {
 
-    fun getAllNotes(note: Note) = repository.getAllNotes()
+    fun getAllNotes() = repository.getAllNotes()
 
 }

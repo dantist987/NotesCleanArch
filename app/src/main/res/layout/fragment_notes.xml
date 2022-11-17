@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DC8989"
-    tools:context=".presentation.ui.fragments.NotesFragment">
+    tools:context=".presentation.ui.fragments.notesList.NotesFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabtn"
@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_task"
+        android:id="@+id/rv_notes"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
