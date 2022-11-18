@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class NotesAdapter(
-   // private val onItemClick: (Note) -> Unit,
+    // private val onItemClick: (Note) -> Unit,
     private val onLongClick: (Note) -> Unit
 ) : RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
 
@@ -27,11 +27,10 @@ class NotesAdapter(
         notifyItemChanged(index)
     }
 
-    fun addData(data: List<Note>?) {
+    fun addData(data: List<Note>) {
         notes.clear()
-        data?.let {
-            notes.addAll(it)
-        }
+        notes.addAll(data)
+
         notifyDataSetChanged()
     }
 
@@ -69,9 +68,9 @@ class NotesAdapter(
             binding.tvNote.text = note.title
             binding.tvDate.text = convertDate(note.createdTime.toString(), "dd-MMMM-yyyy hh:mm")
 
-           // itemView.setOnClickListener {
-            //    onItemClick.invoke(note)
-           // }
+            itemView.setOnClickListener {
+                // onItemClick.invoke(note)
+            }
             itemView.setOnLongClickListener {
                 onLongClick.invoke(note)
                 return@setOnLongClickListener true

@@ -13,7 +13,7 @@ interface NoteDao {
     suspend fun deleteNote(noteEntity: NoteEntity)
 
     @Update
-    suspend fun editNote(noteEntity: NoteEntity): NoteEntity
+    suspend fun editNote(noteEntity: NoteEntity)
 
     @Query("SELECT * FROM notes")
     suspend fun getAllNotes(): List<NoteEntity>

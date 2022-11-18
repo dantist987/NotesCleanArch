@@ -22,7 +22,8 @@ class NoteRepositoryImpl @Inject constructor(
     }
 
     override fun editNote(note: Note) = doRequest {
-        noteDao.editNote(note.toEntity()).toDomain()
+        noteDao.editNote(note.toEntity())
+        return@doRequest note
     }
 
     override fun getAllNotes() = doRequest {

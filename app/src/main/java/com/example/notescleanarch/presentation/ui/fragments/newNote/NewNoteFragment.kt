@@ -7,7 +7,9 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.notescleanarch.core.BaseFragment
 import com.example.notescleanarch.databinding.FragmentNewNoteBinding
 import com.example.notescleanarch.domain.model.Note
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewNoteFragment : BaseFragment() {
 
     private val binding by viewBinding(FragmentNewNoteBinding::bind)
@@ -23,7 +25,7 @@ class NewNoteFragment : BaseFragment() {
     }
 
     private fun initialize() {
-        TODO("Not yet implemented")
+
     }
 
     private fun setupRequests() {
@@ -44,7 +46,6 @@ class NewNoteFragment : BaseFragment() {
             }
         )
     }
-
 
     private fun setupClickListeners() {
         binding.saveBtn.setOnClickListener {

@@ -1,12 +1,11 @@
 package com.example.notescleanarch.presentation.ui.fragments.notesList
 
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import androidx.fragment.app.Fragment
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -15,9 +14,7 @@ import com.example.notescleanarch.core.BaseFragment
 import com.example.notescleanarch.databinding.FragmentNotesBinding
 import com.example.notescleanarch.domain.model.Note
 import com.example.notescleanarch.presentation.adapters.NotesAdapter
-import com.example.notescleanarch.presentation.utils.UIState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class NotesFragment : BaseFragment() {
@@ -25,6 +22,16 @@ class NotesFragment : BaseFragment() {
     private val notesAdapter by lazy { NotesAdapter(this::onItemLongClick) }
     private val viewModel by viewModels<NotesFragmentViewModel>()
     private val binding by viewBinding(FragmentNotesBinding::bind)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View = inflater.inflate(R.layout.fragment_notes, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,8 +60,8 @@ class NotesFragment : BaseFragment() {
             onLoading = {
 
             },
-            onSuccess = {
-
+            onSuccess = { notes ->
+                notesAdapter.addData(notes)
             }
         )
 
@@ -91,7 +98,7 @@ class NotesFragment : BaseFragment() {
         }
     }
 
-    private fun onItemLongClick(note: Note){
+    private fun onItemLongClick(note: Note) {
         notesAdapter.deleteNote(note)
         viewModel.deleteNote(note)
     }
